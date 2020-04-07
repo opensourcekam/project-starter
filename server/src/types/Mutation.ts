@@ -22,7 +22,7 @@ export const Mutation = mutationType({
 						password: hashedPassword
 					}
 				});
-				const { sessionID } = ctx.request;
+				const { sessionID } = ctx.req;
 				ctx.session.userId = user.id;
 
 				if (sessionID) {
@@ -30,7 +30,7 @@ export const Mutation = mutationType({
 				}
 
 				return {
-					token: sessionID,
+					token: sessionID!,
 					user
 				};
 			}
@@ -59,13 +59,11 @@ export const Mutation = mutationType({
 				}
 
 				const { sessionID } = ctx.req;
-
 				ctx.session.userId = user.id;
-				if (sessionID) {
-					await ctx.redis.lpush(`${userSessionIdPrefix}${user.id}`, sessionID);
-				}
 
-				return { token: sessionID, user };
+				await ctx.redis.lpush(`${userSessionIdPrefix}${user.id}`, sessionID!);
+
+				return { token: sessionID!, user };
 			}
 		});
 

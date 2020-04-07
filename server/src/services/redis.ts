@@ -21,7 +21,7 @@ export const redisSession = session({
 		prefix: redisSessionPrefix
 	}),
 	name: 'qid',
-	secret: SESSION_SECRET,
+	secret: SESSION_SECRET!,
 	resave: false,
 	proxy: true,
 	saveUninitialized: true,

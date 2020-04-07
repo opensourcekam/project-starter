@@ -1,4 +1,5 @@
 import { Redis } from 'ioredis';
+import { Store } from 'express-session';
 import { PrismaClient } from '@prisma/client';
 import { ContextParameters } from 'graphql-yoga/dist/types';
 
@@ -15,7 +16,7 @@ export interface Context {
 	connection: ContextParameters['connection'];
 	fragmentReplacements: ContextParameters['fragmentReplacements'];
 	url: string;
-	session: IUserSession;
+	session: any;
 	prisma: PrismaClient;
 	redis: Redis;
 }

@@ -1,6 +1,6 @@
 import * as helmet from 'helmet';
 import { join } from 'path';
-import { static as expressStatic } from 'express';
+import { static as expressStatic, Request, Response, NextFunction } from 'express';
 
 export const serverOptions = {
 	port: 4444,
@@ -8,13 +8,13 @@ export const serverOptions = {
 	subscriptions: '/subscriptions',
 	playground: '/playground',
 	cors: {
-		origin: [ process.env.FRONTEND_HOST, process.env.SERVER_HOST, /http:\/\/localhost:+?/ ],
+		origin: [ process.env.FRONTEND_HOST!, process.env.SERVER_HOST!, /http:\/\/localhost:+?/ ],
 		credentials: true
 	}
 };
 
 export const serveClientBuild = expressStatic(join(__dirname, '../../../client/build'));
-export const directAllTraffic = (req, res, next) => {
+export const directAllTraffic = (req: Request, res: Response, next: NextFunction) => {
 	// Handle graphql-yoga specific routes
 	if (
 		req.url == serverOptions.playground ||

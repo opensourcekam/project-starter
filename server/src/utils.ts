@@ -1,7 +1,7 @@
 import { Context } from './context';
 import { userSessionIdPrefix, redisSessionPrefix } from './constants/index';
 
-export const getUserId = (ctx: Context): string => {
+export const getUserId = (ctx: Context): string | undefined => {
 	const { userId } = ctx.session;
 
 	if (userId) {
