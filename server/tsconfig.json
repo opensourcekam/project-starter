@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "server/src",
+    "lib": ["esnext"],
+    "strict": true
+  },
+  "include": ["server/src/**/*"]
+}
